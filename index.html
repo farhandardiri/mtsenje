@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.5"
+    />
+    <title>Beranda Aplikasi</title>
+    <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Konfigurasi Tailwind untuk mengaktifkan Dark Mode via class -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
+
+    <!-- Font Awesome 6 (free) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!-- Custom style -->
+    <style>
+      /* === RESET & DASAR === */
+      * {
+        transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease,
+          color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+      }
+
+      /* === CARD HOVER === */
+      .card-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+      }
+      .dark .card-hover:hover {
+        box-shadow: 0 12px 24px -8px rgba(255, 255, 255, 0.08);
+      }
+
+      /* === STATUS PULSE === */
+      .status-pulse {
+        animation: pulse-dot 1.8s infinite;
+      }
+      @keyframes pulse-dot {
+        0% {
+          opacity: 0.6;
+          transform: scale(0.95);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+        100% {
+          opacity: 0.6;
+          transform: scale(0.95);
+        }
+      }
+
+      /* === KONTAINER === */
+      .container-custom {
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @media (min-width: 640px) {
+        .container-custom {
+          max-width: 640px;
+        }
+      }
+      @media (min-width: 768px) {
+        .container-custom {
+          max-width: 720px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .container-custom {
+          max-width: 800px;
+        }
+      }
+
+      /* === DARK MODE TOGGLE === */
+      .dark-toggle {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 9999px;
+        padding: 0.5rem 0.9rem;
+      }
+      .dark .dark-toggle {
+        background: rgba(0, 0, 0, 0.25);
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 antialiased min-h-screen flex items-center justify-center p-4 md:p-6"
+  >
+    <!-- ===== KARTU UTAMA ===== -->
+    <div
+      class="container-custom w-full bg-white dark:bg-gray-800 rounded-3xl shadow-2xl dark:shadow-gray-700/30 p-6 md:p-8 border border-gray-200/60 dark:border-gray-700/50"
+    >
+      <!-- === HEADER: FOTO + NAMA + TOGGLE === -->
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <div class="flex items-center gap-4">
+          <!-- FOTO PROFIL -->
+          <div
+            class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden ring-4 ring-indigo-100 dark:ring-indigo-800/60 shadow-md flex-shrink-0"
+          >
+            <!-- GANTI src dengan foto lokal dari folder assets -->
+            <img
+              src="assets/logo.png"
+              alt="Foto Aplikasi"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <!-- NAMA & STATUS -->
+          <div>
+            <h1
+              class="text-xl md:text-2xl font-bold tracking-tight text-gray-800 dark:text-white flex items-center gap-2"
+            >
+              <span>Center MTs Nurul Jadid</span>
+              <!-- <span
+                class="text-xs font-medium bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded-full"
+                >v 1.0</span
+              > -->
+            </h1>
+            <!-- <div class="flex items-center gap-2 mt-0.5">
+              <span
+                class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300"
+              >
+                <span class="relative flex h-2.5 w-2.5">
+                  <span
+                    class="status-pulse absolute inline-flex h-full w-full rounded-full bg-emerald-400 dark:bg-emerald-300 opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 dark:bg-emerald-400"
+                  ></span>
+                </span>
+                <span class="font-medium">Aktif</span>
+              </span>
+              <span
+                class="text-xs text-gray-400 dark:text-gray-500 hidden sm:inline"
+                >•</span
+              >
+              <span
+                class="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline"
+                >updated 2 menit lalu</span
+              >
+            </div> -->
+          </div>
+        </div>
+
+        <!-- TOMBOL DARK MODE -->
+        <button
+          id="darkModeToggle"
+          class="dark-toggle text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 text-xl md:text-2xl focus:outline-none transition-all px-3 py-2 rounded-full bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-600/50 shadow-sm"
+        >
+          <i id="darkIcon" class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <!-- === KETERANGAN === -->
+      <!-- <div
+        class="bg-indigo-50/70 dark:bg-gray-700/40 rounded-2xl p-4 mb-6 border border-indigo-100 dark:border-gray-600/40"
+      >
+        <p
+          class="text-sm md:text-base text-gray-700 dark:text-gray-200 flex items-start gap-2"
+        >
+          <span class="text-indigo-500 dark:text-indigo-400 mt-0.5"
+            ><i class="fas fa-info-circle"></i
+          ></span>
+          <span>
+            <strong class="font-semibold">Keterangan:</strong>
+            Kumpulan semua Aplikasi MTs Nurul Jadid menggunakan Appscript
+          </span>
+        </p>
+      </div> -->
+
+      <!-- === LINK GRID (Di-render dari JavaScript) === -->
+      <div id="appList" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <!-- Konten daftar aplikasi akan dicetak di sini -->
+      </div>
+
+      <!-- === STATUS TAMBAHAN === -->
+      <!-- <div
+        class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-gray-200/70 dark:border-gray-700/50 text-xs md:text-sm text-gray-600 dark:text-gray-300"
+      >
+        <div class="flex items-center gap-4 flex-wrap">
+          <span class="inline-flex items-center gap-1.5">
+            <i
+              class="fas fa-circle text-emerald-400 dark:text-emerald-300 text-[8px]"
+            ></i>
+            <span
+              >Status:
+              <span class="font-medium text-gray-800 dark:text-white"
+                >Online</span
+              ></span
+            >
+          </span>
+          <span class="inline-flex items-center gap-1.5">
+            <i class="fas fa-database text-indigo-400 dark:text-indigo-300"></i>
+            <span>Penyimpanan: 2.4 GB / 5 GB</span>
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span
+            class="bg-gray-200 dark:bg-gray-700 px-2.5 py-1 rounded-full text-gray-700 dark:text-gray-200 flex items-center gap-1"
+          >
+            <i
+              class="fas fa-clock text-gray-400 dark:text-gray-400 text-[10px]"
+            ></i>
+            <span>Terakhir: 12:45</span>
+          </span>
+        </div>
+      </div> -->
+
+      <!-- === FOOTER === -->
+      <div
+        class="mt-5 text-center text-[10px] md:text-xs text-gray-400 dark:text-gray-500 border-t border-gray-200/50 dark:border-gray-700/40 pt-4 flex justify-between items-center"
+      >
+        <span
+          >© 2026
+          <a
+            href="https://mtsnj.sch.id"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-indigo-500 dark:hover:text-indigo-400 hover:underline transition-colors font-medium"
+          >
+            mtsnj.sch.id
+          </a>
+          <!-- <i
+            class="fas fa-heart text-rose-400 dark:text-rose-400 text-[10px]"
+          ></i>
+          made with tailwind -->
+        </span>
+        <!-- <span class="flex items-center gap-1.5">
+          <i class="fas fa-mobile-screen-button"></i>
+          <span class="hidden sm:inline">mobile · desktop</span>
+          <i class="fas fa-desktop hidden sm:inline"></i>
+        </span> -->
+      </div>
+    </div>
+
+    <!-- ===== SCRIPT EKSTERNAL ===== -->
+    <script src="script.js"></script>
+  </body>
+</html>
